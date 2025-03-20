@@ -1,29 +1,29 @@
 services:
     
   web: 
-    container_name: myapp-php
+    container_name: myapp-php-5apps
     build: ./docker-config/php
     ports:
       - '5173:5173'
     volumes:
-      - .:/var/www/
+      - ./my-app:/var/www/
     depends_on:
       - mariadb
 
   nginx:
-    container_name: myapp-nginx
+    container_name: myapp-nginx-5apps
     image: nginx
     build: ./docker-config/nginx
     ports:
       - "81:80"
     volumes:
-      - .:/var/www
+      - ./my-app:/var/www
       - ./docker-config/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - web
 
   mariadb:
-    container_name: myapp-mariadb
+    container_name: myapp-mariadb-5apps
     image: mariadb
     ports:
       - 3306:3306
