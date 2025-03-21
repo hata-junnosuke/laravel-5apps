@@ -1,12 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UrlController;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Todoリスト
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
@@ -15,6 +17,9 @@ Route::put('/tasks/{id}', [TaskController::class, 'maskAsDeleted'])->name('tasks
 Route::get('/tasks/trash', [TaskController::class, 'trash'])->name('tasks.trash');
 Route::put('/tasks/{id}/recover', [TaskController::class, 'recover'])->name('tasks.recover');
 Route::delete('/tasks/deleteTrash', [TaskController::class, 'deleteTrash'])->name('tasks.deleteTrash');
+
+// 天気アプリ
+Route::get('/weather', [WeatherController::class,'index'])->name('weather.index');
 
 // URL短縮
 Route::get('/urls', [UrlController::class, 'index'])->name('urls.index');
